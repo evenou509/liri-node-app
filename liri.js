@@ -8,8 +8,8 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var request = require("request");
 liriReturn = process.argv[2];
-var movieName = process.argv[3];
-var artist = process.argv[3];
+var movieName = process.argv.slice(3).join(" ");
+var artist = process.argv.slice(3).join(" ");
 var moment = require("moment");
 
 //switches commands
@@ -41,12 +41,12 @@ function concertThis() {
     request(queryUrl, function(error, response, body) {
         if(!error && response.statusCode === 200) {
             var myConcert = JSON.parse(body)[0];
-            var queryUrlResults =
+            var queryUrlThis =
                 "Name Of The Venue: " + myConcert.venue.name + "\n" +
                 "Venue Location: " + myConcert.venue.city + "\n" + 
                 "Date Of The Event: " + moment(myConcert.datetime).format("MM/DD/YYYY");
 
-            console.log(queryUrlResults);
+            console.log(queryUrlThis);
         } else {
             console.log("error: " + err);
             return;
