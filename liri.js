@@ -1,7 +1,8 @@
+// code to read and set any environment variables with the dotenv package
 require("dotenv").config();
 
-//required to import the 
-// variable 
+//required to import 
+// variables
 var keys =require('./keys.js');
 var fs = require("fs");
 var Spotify = require('node-spotify-api');
@@ -30,10 +31,11 @@ switch (liriReturn) {
         doWhatItSays();
         break
 
-    // default
+    // default if the user didn't put a request
     default: console.log("Mr. Nobody" + "\n" + "http://www.imdb.com/title/tt0485947/")
 }
 
+//function for concert artis or band name
 function concertThis() {
     
     var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=6ed39e2172dd306dd90a7d5593d3bd5d";
@@ -56,6 +58,7 @@ function concertThis() {
 
 //Spotify  command for artist, song name, preview, album
 function spotifyThisSong(trackName) {
+    
     var trackName = process.argv[3];
     if (!trackName) {
         trackName = "The Sign";
@@ -109,6 +112,7 @@ function movieThis() {
     })
 };
 
+//function for the do what it says using the "fs" node pakacge 
 function doWhatItSays() {
     fs.writeFile("random.txt", 'spotify-this-song,"The Sign"', function (err) {
         var song = "spotify-this-song,'The Sign'"
