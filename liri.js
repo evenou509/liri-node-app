@@ -59,7 +59,7 @@ function concertThis() {
 //Spotify  command for artist, song name, preview, album
 function spotifyThisSong(trackName) {
     
-    var trackName = process.argv[3];
+    var trackName = process.argv.slice(3).join(" ");
     if (!trackName) {
         trackName = "The Sign";
     };
